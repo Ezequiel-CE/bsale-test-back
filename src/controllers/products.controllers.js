@@ -17,7 +17,7 @@ export const searchProducts = async (req, res) => {
       where: { name: { [Op.like]: `%${productName}%` } },
     });
 
-    res.status(200).json({ succes: true, searchProduct });
+    res.status(200).json({ succes: true, products: searchProduct });
   } catch (error) {
     res.status(400).json({ succes: false, message: "something gone wrong" });
   }
