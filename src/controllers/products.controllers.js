@@ -1,4 +1,5 @@
 import Product from "../models/product.model.js";
+import { Op } from "sequelize";
 
 export const getAllProducts = async (req, res) => {
   try {
@@ -8,6 +9,17 @@ export const getAllProducts = async (req, res) => {
     res.status(200).json({ succes: false, message: "something gone wrong" });
   }
 };
-export const searchProducts = (req, res) => {
-  res.send("get a specific product endpoint");
+export const searchProducts = async (req, res) => {
+  const { productName } = req.query;
+
+  try {
+    const searchProduct = await Product.findAll({
+      where: { name: { [Op.like]: `%${productName}%` } },
+    });
+
+    res.status(200).json({ succes: true, searchProduct });
+  } catch (error) {
+    console.log(error);
+    res.status(200).json({ succes: false, message: "something gone wrong" });
+  }
 };
