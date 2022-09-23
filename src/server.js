@@ -3,6 +3,7 @@ import "dotenv/config";
 import db from "./cfg/database.js";
 import cors from "cors";
 import productRouter from "./routes/products.router.js";
+import categoryRouter from "./routes/category.router.js";
 
 const app = express();
 
@@ -11,10 +12,18 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const port = process.env.PORT || 4000;
-
+//routes
 app.use("/api/products", productRouter);
+app.use("/api/category", categoryRouter);
 
+app.use("*", (req, res) => {
+  return res.status(404).json({
+    success: false,
+    message: "API endpoint doesnt exist",
+  });
+});
+
+const port = process.env.PORT || 4000;
 app.listen(port, async () => {
   try {
     await db.authenticate();

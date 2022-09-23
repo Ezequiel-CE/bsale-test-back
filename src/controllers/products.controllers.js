@@ -6,7 +6,7 @@ export const getAllProducts = async (req, res) => {
     const products = await Product.findAll();
     res.status(200).json({ succes: true, products });
   } catch (error) {
-    res.status(200).json({ succes: false, message: "something gone wrong" });
+    res.status(400).json({ succes: false, message: "something gone wrong" });
   }
 };
 export const searchProducts = async (req, res) => {
@@ -19,7 +19,6 @@ export const searchProducts = async (req, res) => {
 
     res.status(200).json({ succes: true, searchProduct });
   } catch (error) {
-    console.log(error);
-    res.status(200).json({ succes: false, message: "something gone wrong" });
+    res.status(400).json({ succes: false, message: "something gone wrong" });
   }
 };
