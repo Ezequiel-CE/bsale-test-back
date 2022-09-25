@@ -12,12 +12,24 @@ export const getCategories = async (req, res) => {
 
 export const getAllProductsByCategory = async (req, res) => {
   const { categoryId } = req.params;
+  const { sort, order } = req.query;
 
   try {
-    const categoryProducts = await Product.findAll({
+    if (sort && order) {
+      const sortedCategoryProducts = await Product.findAll({
+        where: { category: categoryId },
+        order: [sort, order],
+      });
+      return res
+        .status(200)
+        .json({ succes: true, products: sortedCategoryProducts });
+    }
+
+    const unsortedCategoryProducts = await Product.findAll({
       where: { category: categoryId },
     });
-    res.status(200).json({ succes: true, products: categoryProducts });
+
+    res.status(200).json({ succes: true, products: unsortedCategoryProducts });
   } catch (error) {
     res.status(400).json({ succes: false, message: "something gone wrong" });
   }
