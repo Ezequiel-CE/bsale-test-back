@@ -33,8 +33,6 @@ app.listen(port, async () => {
     await db.authenticate();
 
     console.log("Connection has been established successfully.");
-
-    console.log("listen on port " + port);
   } catch (error) {
     console.error("Unable to connect to the database:", error);
   }

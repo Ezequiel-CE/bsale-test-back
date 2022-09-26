@@ -32,7 +32,6 @@ export const getAllProductsByCategory = async (req, res) => {
 
     res.status(200).json({ succes: true, products: unsortedCategoryProducts });
   } catch (error) {
-    console.log(error);
     res.status(400).json({ succes: false, message: "something gone wrong" });
   }
 };
