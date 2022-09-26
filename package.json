@@ -1,7 +1,7 @@
 {
   "name": "bsale-test-back",
   "version": "1.0.0",
-  "description": "",
+  "description": "back end api for bsale test",
   "main": "server.js",
   "type": "module",
   "scripts": {
