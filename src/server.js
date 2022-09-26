@@ -5,8 +5,6 @@ import cors from "cors";
 import morgan from "morgan";
 import productRouter from "./routes/products.router.js";
 import categoryRouter from "./routes/category.router.js";
-import Category from "./models/category.model.js";
-import Product from "./models/product.model.js";
 
 const app = express();
 
