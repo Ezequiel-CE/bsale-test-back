@@ -18,8 +18,9 @@ export const getAllProductsByCategory = async (req, res) => {
     if (sort && order) {
       const sortedCategoryProducts = await Product.findAll({
         where: { category: categoryId },
-        order: [sort, order],
+        order: [[sort, order]],
       });
+
       return res
         .status(200)
         .json({ succes: true, products: sortedCategoryProducts });
@@ -31,6 +32,7 @@ export const getAllProductsByCategory = async (req, res) => {
 
     res.status(200).json({ succes: true, products: unsortedCategoryProducts });
   } catch (error) {
+    console.log(error);
     res.status(400).json({ succes: false, message: "something gone wrong" });
   }
 };
