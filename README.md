@@ -62,8 +62,6 @@ Get products by category ID. Could be sorted by attribute on ASC or DESC order.
 
     Tech for Requests: ThunderClient
 
-## Products
-
 <p align='center'>GET ALL PRODUCTS</p>
 
 ![image](readme_image/get-product.png)
